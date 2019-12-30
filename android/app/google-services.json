@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "231113637541",
+    "firebase_url": "https://practice-4bd82.firebaseio.com",
+    "project_id": "practice-4bd82",
+    "storage_bucket": "practice-4bd82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:231113637541:android:585812be760374b7d9974c",
+        "android_client_info": {
+          "package_name": "com.example.FirebaseUserSignIn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "231113637541-tbbb9okm924bnr7s5rrlulgk7pjc5j9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbog2WpEuhU7-3mtb5OnoLcix4q_HZJZ0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "231113637541-tbbb9okm924bnr7s5rrlulgk7pjc5j9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

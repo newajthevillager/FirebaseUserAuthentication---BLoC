@@ -1,18 +1,25 @@
 import 'package:FirebaseUserSignIn/blocs/regBloc/user_reg_bloc.dart';
 import 'package:FirebaseUserSignIn/blocs/regBloc/user_reg_event.dart';
 import 'package:FirebaseUserSignIn/blocs/regBloc/user_reg_state.dart';
+import 'package:FirebaseUserSignIn/repositories/user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'home_page.dart';
 import 'login_page.dart';
+import 'package:meta/meta.dart';
 
 class SignUpPageParent extends StatelessWidget {
+
+  UserRepository userRepository;
+
+  SignUpPageParent({@required this.userRepository});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserRegBloc(),
-      child: SignUpPage(),
+      create: (context) => UserRegBloc(userRepository: userRepository),
+      child: SignUpPage(userRepository: userRepository),
     );
   }
 }
@@ -23,6 +30,9 @@ class SignUpPage extends StatelessWidget {
 
   String authResult;
   UserRegBloc userRegBloc;
+  UserRepository userRepository;
+
+  SignUpPage({@required this.userRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +149,7 @@ class SignUpPage extends StatelessWidget {
 
   void navigateToHomePage(BuildContext context, FirebaseUser user) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return HomePageParent(user: user);
+      return HomePageParent(user: user, userRepository: userRepository);
     }));
   }
 
@@ -152,7 +162,7 @@ class SignUpPage extends StatelessWidget {
 
   void navigateToLoginPage(BuildContext context) {
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LoginPageParent();
+      return LoginPageParent(userRepository: userRepository);
     }));
   }
 }

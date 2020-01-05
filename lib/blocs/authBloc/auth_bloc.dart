@@ -2,12 +2,13 @@ import 'package:FirebaseUserSignIn/blocs/authBloc/auth_event.dart';
 import 'package:FirebaseUserSignIn/blocs/authBloc/auth_state.dart';
 import 'package:FirebaseUserSignIn/repositories/user_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   UserRepository userRepository;
 
-  AuthBloc() {
-    userRepository = UserRepository();
+  AuthBloc({@required UserRepository userRepository}) {
+    this.userRepository = userRepository;
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:FirebaseUserSignIn/blocs/homeBloc/home_page_bloc.dart';
 import 'package:FirebaseUserSignIn/blocs/homeBloc/home_page_event.dart';
 import 'package:FirebaseUserSignIn/blocs/homeBloc/home_page_state.dart';
+import 'package:FirebaseUserSignIn/repositories/user_repository.dart';
 import 'package:FirebaseUserSignIn/ui/pages/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,15 @@ import 'package:meta/meta.dart';
 
 class HomePageParent extends StatelessWidget {
   FirebaseUser user;
+  UserRepository userRepository;
 
-  HomePageParent({@required this.user});
+  HomePageParent({@required this.user, @required this.userRepository});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomePageBloc(),
-      child: HomePage(user),
+      create: (context) => HomePageBloc(userRepository: userRepository),
+      child: HomePage(user: user, userRepository: userRepository),
     );
   }
 }
@@ -24,8 +26,9 @@ class HomePageParent extends StatelessWidget {
 class HomePage extends StatelessWidget {
   FirebaseUser user;
   HomePageBloc homePageBloc;
+  UserRepository userRepository;
 
-  HomePage(this.user);
+  HomePage({@required this.user, @required this.userRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +62,6 @@ class HomePage extends StatelessWidget {
             BlocListener<HomePageBloc, HomePageState>(
               listener: (context, state) {
                 if (state is LogOutSuccessState) {
-                  print("LOG out BlocListener");
                   navigateToSignUpPage(context);
                 }
               },
@@ -81,7 +83,7 @@ class HomePage extends StatelessWidget {
 
   void navigateToSignUpPage(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return SignUpPageParent();
+      return SignUpPageParent(userRepository: userRepository);
     }));
   }
 }

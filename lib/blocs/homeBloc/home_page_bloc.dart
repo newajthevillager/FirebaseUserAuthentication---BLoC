@@ -2,12 +2,14 @@ import 'package:FirebaseUserSignIn/blocs/homeBloc/home_page_event.dart';
 import 'package:FirebaseUserSignIn/blocs/homeBloc/home_page_state.dart';
 import 'package:FirebaseUserSignIn/repositories/user_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
-
   UserRepository userRepository;
 
-  HomePageBloc() {userRepository = UserRepository();}
+  HomePageBloc({@required UserRepository userRepository}) {
+    this.userRepository = userRepository;
+  }
 
   @override
   // TODO: implement initialState

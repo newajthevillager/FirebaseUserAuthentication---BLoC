@@ -7,8 +7,8 @@ import 'package:meta/meta.dart';
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
   UserRepository userRepository;
 
-  LoginBloc() {
-    userRepository = UserRepository();
+  LoginBloc({@required UserRepository userRepository}) {
+    this.userRepository = userRepository;
   }
 
   @override

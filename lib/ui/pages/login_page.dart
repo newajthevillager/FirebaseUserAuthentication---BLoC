@@ -10,11 +10,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
 class LoginPageParent extends StatelessWidget {
+  UserRepository userRepository;
+
+  LoginPageParent({@required this.userRepository});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => LoginBloc(),
-      child: LoginPAge(),
+      create: (context) => LoginBloc(userRepository: userRepository),
+      child: LoginPAge(userRepository: userRepository),
     );
   }
 }
@@ -23,6 +27,9 @@ class LoginPAge extends StatelessWidget {
   TextEditingController emailCntrlr = TextEditingController();
   TextEditingController passCntrlr = TextEditingController();
   LoginBloc loginBloc;
+  UserRepository userRepository;
+
+  LoginPAge({@required this.userRepository});
 
   @override
   Widget build(BuildContext context) {
@@ -169,15 +176,13 @@ class LoginPAge extends StatelessWidget {
 
   void navigateToHomeScreen(BuildContext context, FirebaseUser user) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return HomePageParent(
-        user: user,
-      );
+      return HomePageParent(user: user, userRepository: userRepository);
     }));
   }
 
   void navigateToSignUpScreen(BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return SignUpPageParent();
+      return SignUpPageParent(userRepository: userRepository);
     }));
   }
 }

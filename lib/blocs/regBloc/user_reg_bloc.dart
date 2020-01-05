@@ -2,12 +2,13 @@ import 'package:FirebaseUserSignIn/blocs/regBloc/user_reg_event.dart';
 import 'package:FirebaseUserSignIn/blocs/regBloc/user_reg_state.dart';
 import 'package:FirebaseUserSignIn/repositories/user_repository.dart';
 import 'package:bloc/bloc.dart';
+import 'package:meta/meta.dart';
 
 class UserRegBloc extends Bloc<UserRegEvent, UserRegState> {
   UserRepository userRepository;
 
-  UserRegBloc() {
-    userRepository = UserRepository();
+  UserRegBloc({@required UserRepository userRepository}) {
+    this.userRepository = userRepository;
   }
 
   @override

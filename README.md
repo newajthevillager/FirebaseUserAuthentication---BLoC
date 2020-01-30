@@ -1,6 +1,10 @@
-# FirebaseUserSignIn - BLoC
+# Firebase User Authentication in BLoC Pattern
 
-A new Flutter project.
+flutter_bloc package is used for BLoC implementation
+
+Feature :
+  - User Registration
+  - User sign in
 
 ## YouTube Video :
 
